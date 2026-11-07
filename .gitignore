@@ -1,0 +1,33 @@
+# Local credentials and environment overrides
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Python environments and generated files
+**/.venv/
+**/.venv-*/
+**/venv/
+**/__pycache__/
+*.py[cod]
+
+# JavaScript dependencies and build output
+**/node_modules/
+**/build/
+**/dist/
+
+# Java compiler output
+.java-build/
+**/*.class
+
+# Local databases and logs
+**/*.db
+**/*.db-*
+**/*.sqlite
+**/*.sqlite3
+*.log
+
+# Preserved metadata from the former nested frontend repository
+.git-frontend-backup/

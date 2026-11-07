@@ -1,0 +1,8 @@
+{
+  "java.project.sourcePaths": [
+    "java"
+  ],
+  "java.project.outputPath": ".java-build",
+  "python-envs.defaultEnvManager": "ms-python.python:system",
+  "python-envs.pythonProjects": []
+}
