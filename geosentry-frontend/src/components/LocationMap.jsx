@@ -33,10 +33,13 @@ function MapBehavior({ devices, selectedId, geofences, draft, follow, centerRequ
 
     const bounds = L.latLngBounds([]);
     geofences.filter(fence => fence.active !== false && Number.isFinite(fence.radius) && fence.radius > 0).forEach(fence => {
-      bounds.extend(L.circle([fence.center.lat, fence.center.lng], { radius: fence.radius }).getBounds());
+      // Circle.getBounds() needs a map projection; this map may not be mounted
+      // yet, so use Leaflet's map-independent meter bounds around the center.
+      bounds.extend(L.latLng(fence.center.lat, fence.center.lng).toBounds(fence.radius * 2));
     });
     if (Number.isFinite(draftLat) && Number.isFinite(draftLng)) {
-      bounds.extend(L.circle([draftLat, draftLng], { radius: Number.isFinite(draftRadius) && draftRadius > 0 ? draftRadius : 1 }).getBounds());
+      const radius = Number.isFinite(draftRadius) && draftRadius > 0 ? draftRadius : 1;
+      bounds.extend(L.latLng(draftLat, draftLng).toBounds(radius * 2));
     }
     if (hasPosition) bounds.extend([lat, lon]);
 
